@@ -146,4 +146,4 @@ npm run dev
 
 ---
 
-⭐ If you like this project, don’t forget to **star the repo!**
+⭐ If you like this project, don’t forget to **star the repo!!!**
