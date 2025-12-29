@@ -4,10 +4,15 @@ import EmployeeFB from "../EmployeeDb/EmployeeFB.jsx";
 import TaskBoard from "../EmployeeDb/TaskBoard.jsx";
 
 const EmployeeDb = ({ empData }) => {
-  console.log(empData);
-  const allTasksData = empData?.tasks || [];
-  const [tasks, setTasks] = useState(allTasksData);
-
+  const [tasks, setTasks] = useState([]);
+  
+  useEffect(() => {
+    if (empData?.tasks) {
+      setTasks(empData.tasks);
+    }
+  }, [empData]);
+  // console.log(empData.tasks);
+  
   //for marking active tasks
   const startTask = (id) => {
     setTasks((prev) =>
@@ -42,7 +47,7 @@ const EmployeeDb = ({ empData }) => {
           return task;
         })
       );
-    }, 1 * 60 * 1000); 
+    }, 1 * 60 * 1000);
 
     return () => clearInterval(interval);
   }, []);

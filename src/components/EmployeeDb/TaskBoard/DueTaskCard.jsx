@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import DuePopupTask from "./DuePopupTask";
 
 const DueTaskCard = ({ task, actionLabel, onAction }) => {
+  const [show, setShow] = useState(false);
+
+
   // ------------------------------for date format------------------------------
   const date = new Date(task.date);
   const day = date.getDate();
@@ -62,12 +66,12 @@ const DueTaskCard = ({ task, actionLabel, onAction }) => {
           </h3>
 
           {/* Details */}
-          <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300 line-clamp-3">
+          <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300 line-clamp-3 wrap-break-word">
             {task.description}
           </p>
         </div>
 
-        <div className="flex gap-4 pt-3">
+        <div className="flex flex-row gap-4 pt-3">
           {/* Button */}
           <button
             className=" p-2 px-3 text-sm font-semibold bg-green-500 text-white rounded-lg hover:bg-green-600 "
@@ -75,8 +79,31 @@ const DueTaskCard = ({ task, actionLabel, onAction }) => {
           >
             {actionLabel}
           </button>
+          <button
+            className=" p-2 px-3 text-sm font-semibold bg-blue-500 text-white rounded-lg hover:bg-green-600 "
+            onClick={() => setShow(true)}
+          >
+            Details
+          </button>
         </div>
       </div>
+
+      {/* BACKDROP */}
+      {show && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+            onClick={() => setShow(false)}
+          />
+          <DuePopupTask
+            task={task}
+            formattedDate={formattedDate}
+            handleShow={setShow}
+            actionLabel={actionLabel}
+            onAction={onAction}
+          />
+        </>
+      )}
     </>
   );
 };

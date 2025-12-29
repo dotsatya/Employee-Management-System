@@ -1,95 +1,49 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { AuthContext } from "../../context/AuthProvider";
+import TaskStatusBar from "./TaskStatusBar";
+import { useState } from "react";
+import PopUpAllTaskStatus from "./PopUpAllTaskStatus";
+import ButtonForPopUp from "./ButtonForPopUp";
 
 const AllTask = () => {
+  const { userData } = useContext(AuthContext);
+
+
   return (
-<div className="flex flex-col items-center justify-center pt-6 px-4 ">
-  <div
-    className="
-      w-[90%] mb-2
-      grid grid-cols-1 sm:grid-cols-3
-      gap-4 sm:gap-10 
-      items-center
-      border border-gray-300 dark:border-zinc-700
-      bg-white dark:bg-zinc-900
-      rounded-lg
-      p-4 sm:p-6
-    "
-  >
-    {/* Name */}
-    <h2 className="text-base text-center sm:text-lg font-bold text-gray-800 dark:text-gray-200">
-      Satya
-    </h2>
+    <>
+      <div className=" flex flex-row items-center justify-center">
+        <table className=" w-full sm:w-[95%] md:w-[90%] lg:w-[85%] table-fixed border-separate border-spacing-y-2">
+          <thead>
+            <tr className="  backdrop-blur-xl bg-white/70 dark:bg-zinc-900/70   border border-gray-200/60 dark:border-zinc-700/60  text-xs sm:text-sm  font-semibold  uppercase  tracking-wide  text-gray-700 dark:text-gray-300 ">
+              <th className="px-6 py-3 text-center rounded-bl-xl">Name</th>
 
-    {/* Task */}
-    <h3 className="text-sm text-center sm:text-base text-gray-600 dark:text-gray-400">
-      Make a UI design
-    </h3>
+              <th className="px-6 py-3 text-center">Total Tasks</th>
 
-    {/* Status */}
-    <h5 className="text-sm text-center font-medium text-emerald-600 dark:text-emerald-400">
-      Status
-    </h5>
-  </div>
- 
-  <div
-    className="
-      w-[90%] mb-2
-      grid grid-cols-1 sm:grid-cols-3
-      gap-4 sm:gap-10 
-      items-center
-      border border-gray-300 dark:border-zinc-700
-      bg-white dark:bg-zinc-900
-      rounded-lg
-      p-4 sm:p-6
-    "
-  >
-    {/* Name */}
-    <h2 className="text-base text-center sm:text-lg font-bold text-gray-800 dark:text-gray-200">
-      Satya
-    </h2>
+              <th className="px-6 py-3 text-center rounded-br-xl">Completed</th>
 
-    {/* Task */}
-    <h3 className="text-sm text-center sm:text-base text-gray-600 dark:text-gray-400">
-      Make a UI design
-    </h3>
+              {/* <th className="px-6 py-3 text-center ">View</th> */}
+            </tr>
+          </thead>
 
-    {/* Status */}
-    <h5 className="text-sm text-center font-medium text-emerald-600 dark:text-emerald-400">
-      Status
-    </h5>
-  </div>
- 
-  <div
-    className="
-      w-[90%] mb-2
-      grid grid-cols-1 sm:grid-cols-3
-      gap-4 sm:gap-10 
-      items-center
-      border border-gray-300 dark:border-zinc-700
-      bg-white dark:bg-zinc-900
-      rounded-lg
-      p-4 sm:p-6
-    "
-  >
-    {/* Name */}
-    <h2 className="text-base text-center sm:text-lg font-bold text-gray-800 dark:text-gray-200">
-      Satya
-    </h2>
+          <tbody>
+            {userData?.employees?.map((employee) => (
+              <TaskStatusBar key={employee.id} employee={employee} />
+            ))}
+          </tbody>
+        </table>
 
-    {/* Task */}
-    <h3 className="text-sm text-center sm:text-base text-gray-600 dark:text-gray-400">
-      Make a UI design
-    </h3>
+        <div className="flex flex-col pt-13.5">
+          {userData?.employees?.map((employee) => (
+            <>
+          <ButtonForPopUp key={employee.id} employee={employee} />
+            </>
+          ))}
+        </div>
+      </div>
 
-    {/* Status */}
-    <h5 className="text-sm text-center font-medium text-emerald-600 dark:text-emerald-400">
-      Status
-    </h5>
-  </div>
-  
-</div>
 
-  )
-}
+    </>
+  );
+};
 
-export default AllTask
+export default AllTask;

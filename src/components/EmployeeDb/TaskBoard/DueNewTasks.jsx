@@ -14,7 +14,7 @@ const DueNewTasks = ({ newTasks, onStart }) => {
               <DueTaskCard
                 key={idx}
                 task={task}
-                actionLabel="Start"
+                actionLabel="Start Now"
                 onAction={() => onStart(task.id)}
               />
             ))}

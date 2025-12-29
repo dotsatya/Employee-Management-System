@@ -18,7 +18,7 @@ const App = () => {
   // localStorage.clear();
 
   useEffect(() => {
-    setLocalStorage();
+    // setLocalStorage();
     getLocalStorage();
   }, []);
 
@@ -26,16 +26,6 @@ const App = () => {
 
   const [user, setUser] = useState(null);
   const authData = useContext(AuthContext); //getting data from context
-  // console.log(authData.userData.employees.find((e)=> e.email == email && e.password == password ));
-
-  // useEffect(() => {
-  //   if (authData) {
-  //     const logedInUser = localStorage.getItem("logedInUser");
-  //     if (logedInUser) {
-  //       setUser(logedInUser.role);
-  //     }
-  //   }
-  // }, [authData])
 
 useEffect(() => {
   if (!authData?.userData) return;

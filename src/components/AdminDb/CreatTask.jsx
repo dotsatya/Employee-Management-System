@@ -1,10 +1,62 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthProvider";
 
 const CreatTask = () => {
+  
+  const [newTaskTitle, setNewTaskTitle] = React.useState("");
+  const [newTaskDate, setNewTaskDate] = React.useState("");
+  const [newTaskEmployeeId, setNewTaskEmployeeId] = React.useState("");
+  const [newTaskEmployeeName, setNewTaskEmployeeName] = React.useState("");
+  const [newTaskCategory, setNewTaskCategory] = React.useState("");
+  const [newTaskDescription, setNewTaskDescription] = React.useState("");
+  
+  const { userData, setUserData } = useContext(AuthContext);
+
+  ////// NEW giving task id 
+  const generateTaskId = () => {
+  return Date.now() + Math.floor(Math.random() * 1000);
+};
+
+
+  const handleCreateNewTask = (e) => {
+    e.preventDefault();
+    const newTask = {
+      id: generateTaskId(),
+      title: newTaskTitle,
+      date: newTaskDate,
+      // employeeId: newTaskEmployeeId,
+      // employeeName: newTaskEmployeeName,
+      category: newTaskCategory,
+      description: newTaskDescription,
+      status: "new",
+    };
+    setNewTaskTitle("");
+    setNewTaskDate("");
+    setNewTaskEmployeeId("");
+    setNewTaskEmployeeName("");
+    setNewTaskCategory("");
+    setNewTaskDescription("");
+    const updatedEmployees = userData.employees.map((employee) =>
+      employee.id === Number(newTaskEmployeeId)
+        ? { ...employee, tasks: [...employee.tasks, newTask] } // NEW reference
+        : employee
+    );
+
+    setUserData({
+      ...userData,
+      employees: updatedEmployees,
+    });
+
+    localStorage.setItem("employees", JSON.stringify(updatedEmployees));
+  };
+
   return (
     <>
-      <div className="flex items-center justify-center p-4">
+      <div className="flex items-center justify-center px-6">
         <form
+          onSubmit={(e) => {
+            handleCreateNewTask(e);
+          }}
           className="
             w-full max-w-6xl
             bg-white
@@ -39,6 +91,8 @@ const CreatTask = () => {
                   focus:border-emerald-500
                   transition
                 "
+                value={newTaskTitle}
+                onChange={(e) => setNewTaskTitle(e.target.value)}
               />
             </div>
 
@@ -59,6 +113,8 @@ const CreatTask = () => {
                   focus:border-emerald-500
                   transition
                 "
+                value={newTaskDate}
+                onChange={(e) => setNewTaskDate(e.target.value)}
               />
             </div>
 
@@ -69,7 +125,7 @@ const CreatTask = () => {
               </label>
               <div className="flex gap-2">
                 <input
-                  type="text"
+                  type="number"
                   placeholder="Employee ID"
                   className="
                     w-full rounded-lg px-4 py-2.5
@@ -82,6 +138,8 @@ const CreatTask = () => {
                     focus:border-emerald-500
                     transition
                   "
+                  value={newTaskEmployeeId}
+                  onChange={(e) => setNewTaskEmployeeId(e.target.value)}
                 />
                 <input
                   type="text"
@@ -97,6 +155,8 @@ const CreatTask = () => {
                     focus:border-emerald-500
                     transition
                   "
+                  value={newTaskEmployeeName}
+                  onChange={(e) => setNewTaskEmployeeName(e.target.value)}
                 />
               </div>
             </div>
@@ -120,6 +180,8 @@ const CreatTask = () => {
                   focus:border-emerald-500
                   transition
                 "
+                value={newTaskCategory}
+                onChange={(e) => setNewTaskCategory(e.target.value)}
               />
             </div>
           </div>
@@ -146,6 +208,8 @@ const CreatTask = () => {
                   transition
                 "
                 placeholder="Write task details here..."
+                value={newTaskDescription}
+                onChange={(e) => setNewTaskDescription(e.target.value)}
               />
             </div>
 
@@ -158,7 +222,6 @@ const CreatTask = () => {
                 dark:bg-emerald-600 dark:hover:bg-emerald-500
                 text-white font-semibold
                 shadow-md
-                
                 transition active:scale-[0.97]
               "
             >
