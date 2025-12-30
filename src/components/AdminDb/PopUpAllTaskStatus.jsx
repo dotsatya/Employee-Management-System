@@ -23,8 +23,7 @@ const EmployeeTasksPopup = ({ employee, onClose }) => {
   //   }
   // };
   // const formattedDate = `${day}${getOrdinal(day)} ${month}, ${year}`;
-  // ------------------------------for date format------------------------------
-
+  // ------------------------------for date format-----------------------------
   const getStatusStyle = (task) => {
     if (task.status === "completed")
       return "bg-green-100 text-green-600 dark:bg-green-500/20 dark:text-green-400";
@@ -39,30 +38,11 @@ const EmployeeTasksPopup = ({ employee, onClose }) => {
     <>
       <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
         {/* MODAL */}
-        <div
-          className="
-          relative w-full max-w-3xl
-          rounded-3xl
-          bg-white/80 dark:bg-slate-900/80
-          backdrop-blur-2xl
-          border border-white/30 dark:border-slate-700/50
-          shadow-[0_30px_70px_-15px_rgba(0,0,0,0.3)]
-          p-6 sm:p-8
-          animate-scaleIn
-        "
-        >
+        <div className="   relative w-full max-w-3xl   rounded-3xl   bg-white/80 dark:bg-slate-900/80   backdrop-blur-2xl   border border-white/30 dark:border-slate-700/50  shadow-[0_30px_70px_-15px_rgba(0,0,0,0.3)]  p-6 sm:p-8  animate-scaleIn ">
           {/* CLOSE */}
           <button
             onClick={onClose}
-            className="
-            absolute top-4 right-4
-            w-9 h-9 rounded-full
-            flex items-center justify-center
-            bg-black/5 hover:bg-black/10
-            dark:bg-white/10 dark:hover:bg-white/20
-            text-gray-600 dark:text-gray-300
-            transition
-          "
+            className=" absolute top-4 right-4   w-9 h-9 rounded-full  flex items-center justify-center bg-black/5 hover:bg-black/10  dark:bg-white/10 dark:hover:bg-white/20  text-gray-600 dark:text-gray-300 transition "
           >
             ✕
           </button>
@@ -78,7 +58,7 @@ const EmployeeTasksPopup = ({ employee, onClose }) => {
           </div>
 
           {/* TASK LIST */}
-          <div className="max-h-[60vh] overflow-y-auto space-y-4 pr-1">
+          <div className="max-h-[60vh] overflow-y-auto space-y-4 pr-1 ">
             {tasks.length === 0 && (
               <p className="text-center text-gray-500 dark:text-gray-400">
                 No tasks assigned
@@ -88,54 +68,50 @@ const EmployeeTasksPopup = ({ employee, onClose }) => {
             {tasks.map((task, index) => (
               <div
                 key={task.id || index}
-                className="
-                flex gap-4 items-start
-                rounded-2xl
-                bg-black/5 dark:bg-white/5
-                p-4
-              "
+                className="  flex gap-4 items-start  rounded-2xl bg-black/5 dark:bg-white/5  p-4 "
               >
                 {/* NUMBER */}
-                <div
-                  className="
-                min-w-9 h-9
-                flex items-center justify-center
-                rounded-xl
-                font-bold
-                bg-indigo-100 text-indigo-600
-                dark:bg-indigo-500/20 dark:text-indigo-400
-              "
-                >
+                <div className=" min-w-9 h-9 flex items-center justify-center    rounded-xl font-bold bg-indigo-100 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-400 ">
                   {index + 1}
                 </div>
 
                 {/* CONTENT */}
                 <div className="flex-1">
-                  <h3 className="font-semibold text-slate-900 dark:text-white">
-                    {task.title}
-                  </h3>
-                  <div className="mt-2 flex items-center justify-between gap-4 text-sm">
-                    {/* DATE */}
-                    <span className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
+                  {/* TITLE + TIME + STATUS */}
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 shrink-0">
+                      {/* TITLE */}
+                      <h3 className="font-semibold text-slate-900 dark:text-white wrap-break-word whitespace-normal">
+                        {task.title}
+                      </h3>
+                      {/* STATUS */}
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${getStatusStyle(
+                          task
+                        )}`}
+                      >
+                        {task.status === "completed"
+                          ? "Completed"
+                          : task.status === "failed"
+                          ? "Failed"
+                          : task.status === "active"
+                          ? "Active"
+                          : "New"}
+                      </span>
+                    </div>
+                    {/* TIME */}
+                    <span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">
                       <span className="text-base">📅</span>
                       {task.date}
                     </span>
-
-                    {/* STATUS */}
-                    <span
-                      className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${getStatusStyle(
-                        task
-                      )}`}
-                    >
-                      {task.status === "completed"
-                        ? "Completed"
-                        : task.status === "failed"
-                        ? "Failed"
-                        : task.status === "active"
-                        ? "Active"
-                        : "New"}
-                    </span>
                   </div>
+
+                  {/* DESCRIPTION */}
+                  {task.description && (
+                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 break-all whitespace-normal leading-relaxed">
+                      {task.description}
+                    </p>
+                  )}
                 </div>
               </div>
             ))}
@@ -145,15 +121,7 @@ const EmployeeTasksPopup = ({ employee, onClose }) => {
           <div className="mt-6 flex justify-end">
             <button
               onClick={onClose}
-              className="
-              px-5 py-2.5 rounded-xl
-              text-sm font-semibold
-              bg-gray-200/80 text-gray-800
-              hover:bg-gray-300
-              dark:bg-slate-800 dark:text-gray-200
-              dark:hover:bg-slate-700
-              transition
-            "
+              className="    px-5 py-2.5 rounded-xl    text-sm font-semibold    bg-gray-200/80 text-gray-800    hover:bg-gray-300    dark:bg-slate-800 dark:text-gray-200    dark:hover:bg-slate-700    transition  "
             >
               Close
             </button>

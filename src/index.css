@@ -13,8 +13,16 @@
   }
 }
 
-/* @layer components {
-  .dark {
-    @apply bg-black text-white;
-  }
-} */
+::-webkit-scrollbar {
+  /* width: 6px; */
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.4);
+  border-radius: 9999px;
+}

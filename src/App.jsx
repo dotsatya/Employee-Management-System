@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Login from "./components/Auth/Login";
 import EmployeeDb from "./components/Dashboard/EmployeeDb";
 import Header from "./components/others/Header";
@@ -27,60 +27,54 @@ const App = () => {
   const [user, setUser] = useState(null);
   const authData = useContext(AuthContext); //getting data from context
 
-useEffect(() => {
-  if (!authData?.userData) return;
+  useEffect(() => {
+    if (!authData?.userData) return;
 
-  const saved = localStorage.getItem("session");
-  if (!saved) return;
+    const saved = localStorage.getItem("session");
+    if (!saved) return;
 
-  const { role, id } = JSON.parse(saved);
+    const { role, id } = JSON.parse(saved);
+    if (role === "admin") {
+      const admin = authData.userData.admins?.find((a) => a.id === id);
+      if (admin) setUser({ role, data: admin });
+    }
+    if (role === "employee") {
+      const employee = authData.userData.employees?.find((e) => e.id === id);
+      if (employee) setUser({ role, data: employee });
+    }
+  }, [authData]);
 
-  if (role === "admin") {
-    const admin = authData.userData.admins?.find(a => a.id === id);
-    if (admin) setUser({ role, data: admin });
-  }
+  const handleLogin = (email, password) => {
+    if (!authData?.userData) return;
+    // ADMIN
+    const admin = authData.userData.admins?.find(
+      (a) => a.email === email && a.password === password
+    );
+    if (admin) {
+      const session = { role: "admin", id: admin.id };
+      localStorage.setItem("session", JSON.stringify(session));
+      setUser({ role: "admin", data: admin });
+      return;
+    }
 
-  if (role === "employee") {
-    const employee = authData.userData.employees?.find(e => e.id === id);
-    if (employee) setUser({ role, data: employee });
-  }
-}, [authData]);
+    // EMPLOYEE
+    const employee = authData.userData.employees?.find(
+      (e) => e.email === email && e.password === password
+    );
+    if (employee) {
+      const session = { role: "employee", id: employee.id };
+      localStorage.setItem("session", JSON.stringify(session));
+      setUser({ role: "employee", data: employee });
+      return;
+    }
 
+    alert("Invalid Email or Password , Please try again...");
+  };
 
-const handleLogin = (email, password) => {
-  if (!authData?.userData) return;
-
-  // ADMIN
-  const admin = authData.userData.admins?.find(
-    a => a.email === email && a.password === password
-  );
-
-  if (admin) {
-    const session = { role: "admin", id: admin.id };
-    localStorage.setItem("session", JSON.stringify(session));
-    setUser({ role: "admin", data: admin });
-    return;
-  }
-
-  // EMPLOYEE
-  const employee = authData.userData.employees?.find(
-    e => e.email === email && e.password === password
-  );
-
-  if (employee) {
-    const session = { role: "employee", id: employee.id };
-    localStorage.setItem("session", JSON.stringify(session));
-    setUser({ role: "employee", data: employee });
-    return;
-  }
-
-  alert("Invalid credentials");
-};
-
-const handleLogOut = () => {
-  localStorage.removeItem("session");
-  setUser(null);
-};
+  const handleLogOut = () => {
+    localStorage.removeItem("session");
+    setUser(null);
+  };
 
   return (
     <>
@@ -99,7 +93,7 @@ const handleLogOut = () => {
           {!user ? <Login handleLogIn={handleLogin} /> : ""}
 
           <main className="mt-6 px-10">
-            {user?.role === "admin" && <AdminDb adminData={user?.data}/>}
+            {user?.role === "admin" && <AdminDb adminData={user?.data} />}
             {user?.role === "employee" && <EmployeeDb empData={user?.data} />}
           </main>
         </div>

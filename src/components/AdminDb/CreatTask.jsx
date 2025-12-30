@@ -6,7 +6,7 @@ const CreatTask = () => {
   const [newTaskTitle, setNewTaskTitle] = React.useState("");
   const [newTaskDate, setNewTaskDate] = React.useState("");
   const [newTaskEmployeeId, setNewTaskEmployeeId] = React.useState("");
-  const [newTaskEmployeeName, setNewTaskEmployeeName] = React.useState("");
+  // const [newTaskEmployeeName, setNewTaskEmployeeName] = React.useState("");
   const [newTaskCategory, setNewTaskCategory] = React.useState("");
   const [newTaskDescription, setNewTaskDescription] = React.useState("");
   
@@ -33,7 +33,7 @@ const CreatTask = () => {
     setNewTaskTitle("");
     setNewTaskDate("");
     setNewTaskEmployeeId("");
-    setNewTaskEmployeeName("");
+    // setNewTaskEmployeeName("");
     setNewTaskCategory("");
     setNewTaskDescription("");
     const updatedEmployees = userData.employees.map((employee) =>
@@ -126,7 +126,7 @@ const CreatTask = () => {
               <div className="flex gap-2">
                 <input
                   type="number"
-                  placeholder="Employee ID"
+                  placeholder="Employee ID (only EID Number)"
                   className="
                     w-full rounded-lg px-4 py-2.5
                     bg-gray-100 dark:bg-zinc-900
@@ -141,7 +141,7 @@ const CreatTask = () => {
                   value={newTaskEmployeeId}
                   onChange={(e) => setNewTaskEmployeeId(e.target.value)}
                 />
-                <input
+                {/* <input
                   type="text"
                   placeholder="Employee Name"
                   className="
@@ -157,7 +157,7 @@ const CreatTask = () => {
                   "
                   value={newTaskEmployeeName}
                   onChange={(e) => setNewTaskEmployeeName(e.target.value)}
-                />
+                /> */}
               </div>
             </div>
 
