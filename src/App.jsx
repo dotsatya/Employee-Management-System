@@ -94,7 +94,7 @@ const App = () => {
 
           <main className="mt-6 px-10">
             {user?.role === "admin" && <AdminDb adminData={user?.data} />}
-            {user?.role === "employee" && <EmployeeDb empData={user?.data} />}
+            {user?.role === "employee" && <EmployeeDb employeeData={user?.data} />}
           </main>
         </div>
       </div>

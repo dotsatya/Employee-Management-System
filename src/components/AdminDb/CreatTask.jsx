@@ -2,21 +2,19 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 
 const CreatTask = () => {
-  
   const [newTaskTitle, setNewTaskTitle] = React.useState("");
   const [newTaskDate, setNewTaskDate] = React.useState("");
   const [newTaskEmployeeId, setNewTaskEmployeeId] = React.useState("");
   // const [newTaskEmployeeName, setNewTaskEmployeeName] = React.useState("");
-  const [newTaskCategory, setNewTaskCategory] = React.useState("");
+  const [newTaskCategory, setNewTaskCategory] = useState("");
   const [newTaskDescription, setNewTaskDescription] = React.useState("");
-  
+
   const { userData, setUserData } = useContext(AuthContext);
 
-  ////// NEW giving task id 
+  ////// NEW giving task id
   const generateTaskId = () => {
-  return Date.now() + Math.floor(Math.random() * 1000);
-};
-
+    return Date.now() + Math.floor(Math.random() * 1000);
+  };
 
   const handleCreateNewTask = (e) => {
     e.preventDefault();

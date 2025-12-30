@@ -1,59 +1,82 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import TaskListNums from "../EmployeeDb/TaskListNums.jsx";
 import EmployeeFB from "../EmployeeDb/EmployeeFB.jsx";
 import TaskBoard from "../EmployeeDb/TaskBoard.jsx";
+import { AuthContext } from "../../context/AuthProvider.jsx";
 
-const EmployeeDb = ({ empData }) => {
+const EmployeeDb = ({ employeeData }) => {
+  const { userData, setUserData } = useContext(AuthContext);
+  const empData = userData?.employees?.find((e) => e.id === employeeData.id);
 
-  
+  // console.log(empData.tasks); 
 
   const [tasks, setTasks] = useState([]);
-  
+
   useEffect(() => {
     if (empData?.tasks) {
       setTasks(empData.tasks);
     }
   }, [empData]);
   // console.log(empData.tasks);
-  
+
   //for marking active tasks
   const startTask = (id) => {
-    setTasks((prev) =>
-      prev.map((task) =>
-        task.id === id ? { ...task, status: "active" } : task
-      )
+    const updated = tasks.map((task) =>
+      task.id === id ? { ...task, status: "active" } : task
     );
+    setTasks(updated);
+    setUserData({
+      ...userData,
+      employees: userData.employees.map((emp) =>
+        emp.id === employeeData.id ? { ...emp, tasks: updated } : emp
+      ),
+    });
   };
 
   //for marking completed tasks
   const completeTask = (id) => {
-    setTasks((prev) =>
-      prev.map((task) =>
-        task.id === id ? { ...task, status: "completed" } : task
-      )
+    const updated = tasks.map((task) =>
+      task.id === id ? { ...task, status: "completed" } : task
     );
+    setTasks(updated);
+    setUserData({
+      ...userData,
+      employees: userData.employees.map((emp) =>
+        emp.id === employeeData.id ? { ...emp, tasks: updated } : emp
+      ),
+    });
   };
 
   //for marking failed tasks
   useEffect(() => {
     const interval = setInterval(() => {
-      setTasks((prev) =>
-        prev.map((task) => {
+      setTasks((prev) => {
+        let changed = false;
+
+        const updated = prev.map((task) => {
           if (task.status !== "completed" && task.status !== "failed") {
             const dueDate = new Date(task.date + "T00:00:00");
-            const now = new Date();
-
-            if (now > dueDate) {
+            if (new Date() > dueDate) {
+              changed = true;
               return { ...task, status: "failed" };
             }
           }
           return task;
-        })
-      );
-    }, 1 * 60 * 1000);
+        });
 
+        if (changed) {
+          setUserData({
+            ...userData,
+            employees: userData.employees.map((emp) =>
+              emp.id === employeeData.id ? { ...emp, tasks: updated } : emp
+            ),
+          });
+        }
+        return updated;
+      });
+    }, 6 * 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [userData, employeeData.id]);
 
   return (
     <div>
