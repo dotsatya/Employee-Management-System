@@ -18,7 +18,7 @@ const App = () => {
   // localStorage.clear();
 
   useEffect(() => {
-    // setLocalStorage();
+    setLocalStorage();
     getLocalStorage();
   }, []);
 
