@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PopUpList from "./PopUpList";
+import PopUpList from "./PopUpList.jsx";
 
 const ActiveTask = ({ activeCount }) => {
   const [show, setShow] = useState(false);
