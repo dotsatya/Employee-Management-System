@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PopUpList from "./PopUpList";
+import ShowLists from "./ShowLists";
 
 const NewTask = ({ newTasksCount }) => {
   const [show, setShow] = useState(false);
@@ -30,7 +30,7 @@ const NewTask = ({ newTasksCount }) => {
 
       {/* POPUP */}
       {show && (
-        <PopUpList
+        <ShowLists
           setShow={setShow}
           showTasks={newTasks}
           title="New Tasks"

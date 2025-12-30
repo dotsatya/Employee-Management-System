@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PopUpList from "./PopUpList.jsx";
+import ShowLists from "./ShowLists";
 
 const FailedTask = ({ failedCount }) => {
   const [show, setShow] = useState(false);
@@ -31,7 +31,7 @@ const FailedTask = ({ failedCount }) => {
 
       {/* POPUP */}
       {show && (
-        <PopUpList
+        <ShowLists
           setShow={setShow}
           showTasks={failedTasks}
           title="Failed Tasks"

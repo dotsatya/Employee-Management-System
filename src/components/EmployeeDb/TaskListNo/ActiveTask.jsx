@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PopUpList from "./PopUpList.jsx";
+import ShowLists from "./ShowLists";
 
 const ActiveTask = ({ activeCount }) => {
   const [show, setShow] = useState(false);
@@ -31,7 +31,7 @@ const ActiveTask = ({ activeCount }) => {
 
       {/* POPUP MODAL */}
       {show && (
-        <PopUpList
+        <ShowLists
           setShow={setShow}
           showTasks={activeTasks}
           title="Active Tasks"
