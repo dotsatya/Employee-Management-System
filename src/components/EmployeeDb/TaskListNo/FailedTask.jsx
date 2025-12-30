@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import PopUpList from "./PopUpList";
+import { useState } from "react";
+import PopUpList from "./PopUpList.jsx";
 
 const FailedTask = ({ failedCount }) => {
   const [show, setShow] = useState(false);
