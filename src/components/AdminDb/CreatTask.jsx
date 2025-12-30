@@ -91,6 +91,7 @@ const CreatTask = () => {
                 "
                 value={newTaskTitle}
                 onChange={(e) => setNewTaskTitle(e.target.value)}
+                required
               />
             </div>
 
@@ -101,11 +102,13 @@ const CreatTask = () => {
               </label>
               <input
                 type="date"
+                placeholder="mm/dd/yyyy"
                 className="
                   w-full rounded-lg px-4 py-2.5
                   bg-gray-100 dark:bg-zinc-900
                   border border-gray-300 dark:border-zinc-700
                   text-gray-900 dark:text-zinc-100
+                  placeholder:text-gray-400 dark:placeholder:text-zinc-500
                   focus:outline-none
                   focus:ring-2 focus:ring-emerald-500/70
                   focus:border-emerald-500
@@ -113,6 +116,7 @@ const CreatTask = () => {
                 "
                 value={newTaskDate}
                 onChange={(e) => setNewTaskDate(e.target.value)}
+                required
               />
             </div>
 
@@ -138,6 +142,7 @@ const CreatTask = () => {
                   "
                   value={newTaskEmployeeId}
                   onChange={(e) => setNewTaskEmployeeId(e.target.value)}
+                  required
                 />
                 {/* <input
                   type="text"
@@ -180,6 +185,7 @@ const CreatTask = () => {
                 "
                 value={newTaskCategory}
                 onChange={(e) => setNewTaskCategory(e.target.value)}
+                required
               />
             </div>
           </div>
@@ -208,6 +214,7 @@ const CreatTask = () => {
                 placeholder="Write task details here..."
                 value={newTaskDescription}
                 onChange={(e) => setNewTaskDescription(e.target.value)}
+                required
               />
             </div>
 

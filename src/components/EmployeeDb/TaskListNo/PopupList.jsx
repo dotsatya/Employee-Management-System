@@ -1,4 +1,3 @@
-import React from 'react'
 
 const PopUpList = ({title, subtitle, showTasks, setShow}) => {
   return (
